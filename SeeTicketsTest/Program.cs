@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace SeeTicketsTest
 {
@@ -6,7 +8,16 @@ namespace SeeTicketsTest
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            var dataRecorder = new SeeTicketsDataRecorder();
+            var dateTimeExtracter = new SeeTicketsDateTimeExtracter();
+
+            char[] alphabet;
+            // alphabet = "-ABCDEFGHIJKLMNOPQRSTUVWXYZ".ToCharArray();
+            alphabet = "E".ToCharArray();
+
+            SeeTicketsCrawler crawler = new SeeTicketsCrawler(dataRecorder, dateTimeExtracter, alphabet, 20);
+
+            crawler.Crawl().Wait();
         }
     }
 }
